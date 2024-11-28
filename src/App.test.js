@@ -39,3 +39,11 @@ test('Should render calender icon on start page', () => {
   expect(iconElement).toBeInTheDocument();
 });
 
+test("calls onClick when button is clicked", () => {
+  const handleClick = jest.fn();
+  render(<App />);
+  const button = screen.getByTestId('snowButton');
+  fireEvent.click(button);
+  expect(handleClick).toHaveBeenCalledTimes(1);
+  
+});
