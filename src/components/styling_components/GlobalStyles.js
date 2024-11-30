@@ -1,4 +1,3 @@
-// GlobalStyles.js
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
@@ -23,9 +22,9 @@ const GlobalStyles = createGlobalStyle`
 
   }
     .App{
-  min-height: 120vh;
-  color: white; /*
-  background-image: url('./images/idea1.jpg');
+  min-height: 150vh;
+  color: white;
+  background-image: url('./images/bckgr.jpg'); /*
   background-color: white; */ /* Uncomment if you want a fallback background color */
   background-size: cover; /* Optional: Ensures the image covers the full viewport */
   background-position: center; /* Optional: Centers the image 
@@ -72,7 +71,7 @@ background-size: 10px 10px;*/
   }
 
   a {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #ffffff;
     text-decoration: none;
 
@@ -80,7 +79,8 @@ background-size: 10px 10px;*/
     &:hover {
       text-decoration: underline;
       text-decoration: none;
-      color:black;
+      // color:#F9BDBD;
+     color: #888BC0;
     }
   }
 
@@ -92,39 +92,46 @@ background-size: 10px 10px;*/
     align-items: center;
     position: sticky;
     top: 0;
-    background-color: ecf5fc;
+    // background-color: #151659;
+// background-color: #e0e0e994;
     z-index:1;
+     margin-bottom: 2em;
 }
    
-.icon{
-  //  color: rgb(119,183,239);
-  color:white;
-   font-size: 1.5em;
-}
-  .home-icon{
 
-    color:#F9BDBD;
+  .icon{
+ border: none; 
+ display: flex; 
+ align-Items: center; 
+ font-size: 1.3em; 
+ cursor: pointer;
+// color:#F9BDBD;
+color: #888BC0;
   
   }
 
-  .calendar-icon{
-
-    color:#F9BDBD;
-   
-  }
+ 
 
 .navigation {
                 top: 0;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
-                margin: 1em;
+                margin: 0.4em;
                 gap: 3em;
                 align-items: flex-end;
-                font-size: 2em;
-            
+                font-size: 1.5em;
+           
 }
 
+     .calendar-day{
+    color:white;
+     transition:0.3s;
+     &:hover{
+      color:transparent;
+      cursor:pointer;
+     }
+     }
   
 `;
 

@@ -1,21 +1,23 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { Button, CloseButton, PaginationButton } from "../styling_components/AllButtons";
 import InfoContainer from '../styling_components/InfoContainer';
 import { StyledList, StyledListSavedItems } from "../styling_components/AllStyledLists";
+import ItemHolder from '../styling_components/ItemHolder';
 
 const BASE_URL = "https://openlibrary.org/search.json";
 const IMAGE_BASE_URL = "https://covers.openlibrary.org/b/id/";
 
 const ChristmasBooks = ({ savedBooks, setSavedBooks }) => {
-  const [books, setBooks] = useState([]);
+  const [books, setBooks] = useState([]); 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showBook, setShowBook] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
- 
+
+  useEffect(() => {
     const fetchBooks = async () => {
       try {
         const response = await axios.get(BASE_URL, {
@@ -30,10 +32,13 @@ const ChristmasBooks = ({ savedBooks, setSavedBooks }) => {
     };
 
     fetchBooks();
+  }, [])
+ 
+
 
 
   const handleNextBook = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % books.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % books.length); // (% enables the looping through the array of books)
     setShowBook(true);
   };
 
@@ -41,11 +46,13 @@ const ChristmasBooks = ({ savedBooks, setSavedBooks }) => {
     const currentBook = books[currentIndex];
     if (currentBook && !savedBooks.some(book => book.key === currentBook.key)) {
       setSavedBooks([...savedBooks, currentBook]);
+    }else {
+      alert("This book is already saved!");
     }
   };
 
   const removeBook = (indexToRemove) => {
-    setSavedBooks(savedBooks.filter((_savedBook, index) => index !== indexToRemove));
+    setSavedBooks(savedBooks.filter((_savedBook, index) => index !== indexToRemove)); // (creates a new array with books, index of each is not equal the index to remove)
   };
 
   if (loading) return <p>Oh! <br></br> there are so many nice books to read! <br></br>Pls have some patience! Go drink some coffee! <br></br> We are loading...</p>;
@@ -58,6 +65,7 @@ const ChristmasBooks = ({ savedBooks, setSavedBooks }) => {
       <h1>Step 1/4</h1>
       <p>Click on the button below <br></br> to choose and add a Book <br></br> to your Advent Calendar</p>
       <InfoContainer>
+        <ItemHolder>
         {showBook && currentBook && (
           <>
             {currentBook.cover_i ? (
@@ -74,12 +82,12 @@ const ChristmasBooks = ({ savedBooks, setSavedBooks }) => {
             {currentBook.first_publish_year && <p>Published: {currentBook.first_publish_year}</p>}
           </>
         )}
-
-        <div style={{ marginTop: '20px' }}>
+</ItemHolder>
+        <div style={{ marginTop: '20px' , marginBottom: '20px' }}>
           <Button onClick={handleNextBook} style={{ margin: '0 10px' }}>
-            {showBook ? 'Another' : 'Show'}
+                        {'Another'}
           </Button>
-          <Button onClick={saveBook} disabled={!showBook} style={{ margin: '0 10px' }}>
+          <Button onClick={saveBook}  style={{ margin: '0 10px' }}>
             Save
           </Button>
           <Link to="/ideaspage">
@@ -88,8 +96,9 @@ const ChristmasBooks = ({ savedBooks, setSavedBooks }) => {
         </div>
       </InfoContainer>
 
+
       {savedBooks.length > 0 && (
-        <InfoContainer className="saved-books" style={{ marginTop: '30px' }}>
+        <InfoContainer className="saved-books" style={{ marginTop: '30px' , backgroundColor: '#e0e0e994' , borderRadius: '2.5em'}}>
           <h3>Saved Books:</h3>
           <StyledListSavedItems>
             {savedBooks.map((book, index) => (
@@ -113,9 +122,10 @@ const ChristmasBooks = ({ savedBooks, setSavedBooks }) => {
                 </CloseButton>
               </StyledList>
             ))}
+          
           </StyledListSavedItems>
         </InfoContainer>
-      )}
+      )}  
     </InfoContainer>
   );
 };

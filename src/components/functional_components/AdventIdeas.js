@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ItemHolder from '../styling_components/ItemHolder';
 
 import {
   Button,
@@ -108,9 +109,9 @@ function AdventIdeas({ savedIdeas, setSavedIdeas }) {
         <br></br>to your Advent Calender
       </p>
       <InfoContainer>
+     <   ItemHolder>
         <div style={{ marginTop: "20px" }}>
-          <h2>{currentAdventIdea.title}</h2> 
-          <p>{currentAdventIdea.idea}</p>
+
           {currentAdventIdea.image && (
             <img
               src={currentAdventIdea.image}
@@ -123,8 +124,11 @@ function AdventIdeas({ savedIdeas, setSavedIdeas }) {
               }}
             />
           )}
-        </div>
 
+<h2>{currentAdventIdea.title}</h2> 
+<p>{currentAdventIdea.idea}</p>
+        </div>
+        </ItemHolder>
         <div style={{ marginTop: "20px" }}>
           <Link to="/moviespage">
             <PaginationButton style={{ margin: "0 10px" }}>
@@ -132,11 +136,10 @@ function AdventIdeas({ savedIdeas, setSavedIdeas }) {
             </PaginationButton>
           </Link>
           <Button onClick={showAdventIdea} style={{ margin: "0 10px" }}>
-            {showIdea ? "Another" : "Show"}
+            {'Another'}
           </Button>
           <Button
             onClick={saveAdventIdea}
-            disabled={!showIdea}
             style={{ margin: "0 10px" }}
           >
             Save
@@ -150,7 +153,7 @@ function AdventIdeas({ savedIdeas, setSavedIdeas }) {
       </InfoContainer>
 
       {savedIdeas.length > 0 && (
-        <InfoContainer style={{ marginTop: "30px" }}>
+        <InfoContainer style={{ marginTop: '30px' , backgroundColor: '#e0e0e994' , borderRadius: '2.5em'}}>
           <h3>Saved Ideas:</h3>
           <StyledListSavedItems>
             {savedIdeas.map((saved, index) => (

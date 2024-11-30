@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Button, CloseButton, PaginationButton } from "../styling_components/AllButtons";
 import InfoContainer from '../styling_components/InfoContainer';
 import { StyledList, StyledListSavedItems } from "../styling_components/AllStyledLists";
+import ItemHolder from '../styling_components/ItemHolder';
 
 
 const BASE_URL = 'https://api.themoviedb.org/3/search/movie'; 
@@ -11,13 +12,16 @@ const API_KEY = 'edfffb78499bcd6f85acc629a32e9799';
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; 
 
 const MovieList = ({ savedMovies, setSavedMovies }) => {
+
   const [movies, setMovies] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showMovie, setShowMovie] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
 
- 
+
+  useEffect(() => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get(BASE_URL, {
@@ -33,8 +37,11 @@ const MovieList = ({ savedMovies, setSavedMovies }) => {
         setLoading(false);
       }
     };
-
     fetchMovies();
+  }, []); 
+
+
+
 
 
   const handleNextMovie = () => {
@@ -46,6 +53,8 @@ const MovieList = ({ savedMovies, setSavedMovies }) => {
     const currentMovie = movies[currentIndex];
     if (currentMovie && !savedMovies.some(movie => movie.id === currentMovie.id)) {
       setSavedMovies([...savedMovies, currentMovie]);
+    }else {
+      alert("This movie is already saved!");
     }
    
   };
@@ -66,6 +75,7 @@ const MovieList = ({ savedMovies, setSavedMovies }) => {
       <h1>Step 2/4</h1>
       <p>Click on the button below <br></br> to choose and add a Movie<br></br>  to your Advent Calendar</p>
       <InfoContainer>
+      <ItemHolder>
         {showMovie && currentMovie && (
           <>
             <img
@@ -77,12 +87,12 @@ const MovieList = ({ savedMovies, setSavedMovies }) => {
             <p>{currentMovie.overview}</p>
           </>
         )}
-
+ </ItemHolder>
         <div style={{ marginTop: '20px' }}>
           <Button onClick={handleNextMovie} style={{ margin: '0 10px' }}>
-            {showMovie ? 'Another' : 'Show'}
+          {'Another'}
           </Button>
-          <Button onClick={saveMovie} disabled={!showMovie} style={{ margin: '0 10px' }}>
+          <Button onClick={saveMovie} style={{ margin: '0 10px' }}>
             Save
           </Button>
           <Link to="/ideaspage">
@@ -92,7 +102,7 @@ const MovieList = ({ savedMovies, setSavedMovies }) => {
       </InfoContainer>
 
       {savedMovies.length > 0 && (
-        <InfoContainer className="saved-movies" style={{ marginTop: '30px' }}>
+        <InfoContainer className="saved-movies" style={{ marginTop: '30px' , backgroundColor: '#e0e0e994' , borderRadius: '2.5em'}}>
           <h3>Saved Movies:</h3>
           <StyledListSavedItems>
             {savedMovies.map((movie, index) => (
@@ -122,5 +132,7 @@ const MovieList = ({ savedMovies, setSavedMovies }) => {
     </InfoContainer>
   );
 };
+
+
 
 export default MovieList;

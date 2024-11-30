@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import ItemHolder from '../styling_components/ItemHolder';
 
 import {
   Button,
@@ -66,6 +67,7 @@ function CustomThoughts({ savedCustomThoughts, setSavedCustomThoughts }) {
         the advent time more magical
       </p>
       <InfoContainer>
+      <ItemHolder>
         <form onSubmit={handleSubmit(onSubmit)}>
           <textarea
             placeholder="Write your own ideas to make Advent time magic"
@@ -80,11 +82,12 @@ function CustomThoughts({ savedCustomThoughts, setSavedCustomThoughts }) {
               boxSizing: "border-box",
               minHeight: "350px",
               minWidth: "400px",
-
               resize: "vertical",
               display: "flex",
               margin: "10px auto",
+              marginTop: "2em",
               rows: "16",
+              
             }}
           />
           {errors.newThought && (
@@ -94,17 +97,15 @@ function CustomThoughts({ savedCustomThoughts, setSavedCustomThoughts }) {
           <Button
             type="submit"
             style={{
-              margin: "0 10px",
-              display: " flex",
-              margin: "auto",
-              display: "flex",
+              margin: "10px auto",
+               display: "flex",
               justifyContent: "center",
             }}
           >
             Save
           </Button>
         </form>
-
+ </ItemHolder>
         <div style={{ marginTop: "10px" }}>
           <Link to="/ideaspage">
             <PaginationButton style={{ margin: "0 10px" }}>
@@ -120,7 +121,7 @@ function CustomThoughts({ savedCustomThoughts, setSavedCustomThoughts }) {
       </InfoContainer>
 
       {savedCustomThoughts.length > 0 && (
-        <InfoContainer style={{ marginTop: "30px" }}>
+        <InfoContainer style={{ marginTop: '30px' , backgroundColor: '#e0e0e994' , borderRadius: '2.5em'}}>
           <h3>Saved Thoughts:</h3>
           <StyledListSavedItems>
             {savedCustomThoughts.map((thought, index) => (

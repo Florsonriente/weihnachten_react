@@ -10,7 +10,7 @@ export default function SnowEffectButton({ showSnow, setShowSnow }) {
 
   return (
     <div>
-      <button className="icon" onClick={toggleSnow} style={{ border: "none", display: 'flex', alignItems: 'center', backgroundColor:"transparent", fontSize: "1em", cursor: "pointer"}}>
+      <button className="icon" onClick={toggleSnow} style={{ border: "none", display: 'flex', alignItems: 'center', backgroundColor:"transparent", fontSize: "1.2em", cursor: "pointer"}}>
         {showSnow ? <FaSun /> : <FaSnowflake/>} 
       </button>
     </div>

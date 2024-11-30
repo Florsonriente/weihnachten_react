@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { CloseButton } from '../styling_components/AllButtons';
 import InfoContainer from '../styling_components/InfoContainer';
+import ItemHolder from '../styling_components/ItemHolder';
+
 
 function CalendarSquare({ day, item, onDrop, onRemove }) {
   const handleDrop = (event) => {
@@ -10,7 +12,7 @@ function CalendarSquare({ day, item, onDrop, onRemove }) {
   };
 
   const handleDragOver = (event) => {
-    event.preventDefault(); // Necessary to allow dropping
+    event.preventDefault(); 
   };
 
   return (
@@ -27,9 +29,12 @@ function CalendarSquare({ day, item, onDrop, onRemove }) {
         overflow: 'hidden',
         position: 'relative',
         boxSizing: 'border-box',
+        backgroundColor: '#e0e0e994',
+        borderRadius:'1em',
+      
       }}
     >
-      <span
+      <span className='calendar-day'
         style={{
           position: 'absolute',
           top: '5px',
@@ -37,7 +42,7 @@ function CalendarSquare({ day, item, onDrop, onRemove }) {
           fontSize: '5em',
           zIndex: 1,
           opacity: 1, 
-          transition: 'opacity 0.3s',
+         
         }}
       >
         {day}
@@ -225,11 +230,13 @@ function SavedItems({ savedMovies, savedIdeas, savedCustomThoughts, savedBooks }
           />
         ))}
       </div>
+      <ItemHolder>
       <ul style={{ display: 'flex', flexWrap: 'wrap', listStyleType: 'none', padding: 0 }}>
         {availableItems.map((item) => (
           <DraggableItem key={item.id} item={item} onRemove={handleRemoveAvailableItem} />
         ))}
       </ul>
+      </ItemHolder>
     </InfoContainer>
   );
 }

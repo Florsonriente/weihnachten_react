@@ -34,6 +34,7 @@ npm install react-icons, react-icons/fa (icons in navigation)
 npm install react-snowfall (for the snowfall effect)
 npm install react-hook-form (for the "custom thoughts" component)
 npm install @testing-library/react (for tests)
+npm install styled-components (for styling)
 
 
 FILE STRUCTURE
@@ -88,3 +89,20 @@ Drag and drop functionality in React
 TESTING:
 https://stackoverflow.com/questions/74317260/react-testing-library-show-error-because-of-axios
 
+MISC CODE SNIPPETS:
+(Going to next item/iterating through a list with use state) 
+https://stackoverflow.com/questions/77412887/the-counter-between-the-slide-and-the-buttons-below-isn-t-the-same-in-react-com
+https://stackoverflow.com/questions/64662469/reactjs-how-to-call-useeffect-to-set-current-image-index-to-0-if-new-images-are
+
+(Deleting elements from array)
+https://react.dev/learn/updating-arrays-in-state
+https://stackoverflow.com/questions/62861655/is-filter-best-way-to-remove-items-in-array-react-js
+
+(conditional rendering)
+https://react.dev/learn/conditional-rendering
+
+(use effect api )
+https://www.shecodes.io/athena?tag=useEffect
+
+(toggle button for snow effect)
+https://stackoverflow.com/questions/62353540/what-is-the-right-way-to-toggle-a-value-inside-object-state-in-react-hooks

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
-
 import { FaHome, FaCalendarAlt } from 'react-icons/fa'; 
 
 import AdventIdeas from "./components/functional_components/AdventIdeas";
@@ -18,6 +17,7 @@ import Snowfall from "react-snowfall";
 import GlobalStyles from "./components/styling_components/GlobalStyles";
 import {  TypographyWrapper,  StyledWord} from "./components/effects_components/StyledTypography";
 import { Button } from "./components/styling_components/AllButtons";
+
 
 function App() {
 
@@ -45,10 +45,11 @@ function App() {
       {showSnow && <Snowfall />}
       <Router>
         <div className="App">
+  
           <header className="App-header">
             <nav className="navigation">
-              <Link to="/" className="home-icon" data-testid = 'home'
-              style={{ border: "none", display: 'flex', alignItems: 'center', fontSize: "1.3em", cursor: "pointer"}}
+              <Link to="/" className="icon" data-testid = 'home'
+              
                  >
                 <FaHome  />
               </Link>
@@ -73,10 +74,10 @@ function App() {
              
               <Link
                 to="/saved-items"
-                className="calendar-icon"
+                className="icon"
                 style={{ position: "relative" }}
               >
-                 <FaCalendarAlt  style={{ border: "none", /*display: 'flex',*/ alignItems: 'center', fontSize: "1.3em", cursor: "pointer"}}
+                 <FaCalendarAlt  
                  /> 
                 {totalSavedItems > 0 && (
                   <span
@@ -114,14 +115,16 @@ function App() {
                           <span>{letter}</span>
                         </React.Fragment>
                       ))}
-                    </StyledWord>
-                    <br />
-
-                    <Link to="/bookspage">
+                    </StyledWord>  
+                     <Link to="/bookspage">
                       <Button>Start!</Button>
                     </Link> 
+                    <br />
+
+                 
                   </TypographyWrapper>
-                  <div> </div>
+                  <div>
+                     </div>
                 </>
               }
             />

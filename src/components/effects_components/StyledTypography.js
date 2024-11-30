@@ -11,19 +11,24 @@ export const TypographyWrapper = styled.div`
   position: relative;
  left: 50%;
  transform: translate(-50%, 50%);
+background-color: #e0e0e994;
+    border-radius: 2.5em;
+    width: fit-content;
+    padding: 1em;
 
 `;
 
 export const StyledWord = styled.div`
   font-size: 5rem;
-  font-weight: 100;
+  font-weight: 900;
   letter-spacing: 0.5rem;
   text-transform: uppercase;
-  color: #F9BDBD;
+  color: #EF6503;
+   
   display: inline-block;
    line-height: §rem;
   flex-wrap:wrap;
-
+text-shadow: 2px 2px #ff0000;
   & span {
     transition: transform 1.3s ease-in-out, color 1.3s ease-in-out;
     display: inline-block;
